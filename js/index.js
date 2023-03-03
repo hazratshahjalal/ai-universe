@@ -25,7 +25,7 @@ const displayTools = tools => {
              <p class="text-muted"><i class="fa-regular fa-calendar-days pe-3"></i> ${tool.published_in}</p>
             </div>
             <div class = "row">
-            <i class="fa-solid fa-arrow-right text-danger"></i>
+            <button onclick="loadToolDetails(${tool.id})" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> <i class="fa-solid fa-arrow-right text-danger"></i></button>
             </div>
           </div>
       </div>
@@ -42,7 +42,7 @@ document.getElementById('btn-more').addEventListener('click', function () {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    displayAllTools(data.data.tools.slice(7, 12))
+    displayAllTools(data.data.tools.slice(7, 13))
   }
 
   const displayAllTools = tools => {
@@ -65,7 +65,7 @@ document.getElementById('btn-more').addEventListener('click', function () {
                <p class="text-muted"><i class="fa-regular fa-calendar-days pe-3"></i> ${tool.published_in}</p>
               </div>
               <div class = "row">
-              <i class="fa-solid fa-arrow-right text-danger"></i>
+              <button onclick="loadToolDetails(${tool.id})" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> <i class="fa-solid fa-arrow-right text-danger"></i></button>
               </div>
             </div>
         </div>
@@ -97,5 +97,18 @@ document.getElementById('btn-more').addEventListener('click', function () {
       spinner.style.display = 'none';
     });
 });
+
+// modal details
+const loadToolDetails = idTool => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${idTool}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayToolDetails(data.tools[0]));
+}
+
+const displayToolDetails = tool => {
+  document.getElementById('toolModalLabel').innerText = tool.name;
+  const toolDetails = document.getElementById('')
+}
 
 
