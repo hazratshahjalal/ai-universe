@@ -36,7 +36,7 @@ const displayTools = tools => {
 
 loadTools();
 
-
+// for see more button to display remaining cards
 document.getElementById('btn-more').addEventListener('click', function () {
   const loadAllTools = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
@@ -76,3 +76,26 @@ document.getElementById('btn-more').addEventListener('click', function () {
 
   loadAllTools();
 })
+
+// Show the spinner
+document.getElementById('btn-more').addEventListener('click', function () {
+  const spinner = document.getElementById('spinner');
+  spinner.style.display = 'block';
+
+  fetch(`https://openapi.programming-hero.com/api/ai/tools`)
+    .then(res => res.json())
+    .then(data => {
+      displayAllTools(data.data.tools.slice(7, 12));
+
+      // Hide the spinner after 2 seconds
+      setTimeout(function () {
+        spinner.style.display = 'none';
+      }, 2000);
+    })
+    .catch(error => {
+      console.error('Error loading data:', error);
+      spinner.style.display = 'none';
+    });
+});
+
+
