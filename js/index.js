@@ -11,15 +11,23 @@ const displayTools = tools => {
     const toolDiv = document.createElement('div');
     toolDiv.classList.add('col');
     toolDiv.innerHTML = `
-      <div class="card h-100">
-        <img src="${tool.image}" class="card-img-top" alt="${tool.title}">
+      <div class="card h-100 p-3">
+        <img src="${tool.image}" class="card-img-top" alt="${tool.name}">
         <div class="card-body">
-          <h5 class="card-title">${tool.title}</h5>
-          <p class="card-text">${tool.description}</p>
+          <h3 class="card-title">Featurs</h3>
+          <p class="card-text">1. ${tool.features[0]}</p>
+          <p class="card-text">2. ${tool.features[1]}</p>
+          <p class="card-text">3. ${tool.features[2]}</p>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated ${tool.lastUpdated}</small>
-        </div>
+        <div class="card-footer d-flex align-items-center justify-content-around">
+            <div class = "row">
+             <h4>${tool.name}</h4>
+             <p class="text-muted"><i class="fa-regular fa-calendar-days pe-3"></i> ${tool.published_in}</p>
+            </div>
+            <div class = "row">
+            <i class="fa-solid fa-arrow-right text-danger"></i>
+            </div>
+          </div>
       </div>
     `;
     toolsContainer.appendChild(toolDiv);
