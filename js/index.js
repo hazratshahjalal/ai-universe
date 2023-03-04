@@ -99,8 +99,8 @@ const displayToolDetails = tool => {
   toolDetails.innerHTML = `
   <div class="container text-center">
     <div class="row">
-      <div class="col bg-light p-3">
-        <h5>${tool.description}</h5>
+      <div class="col bg-light p-3 border border-danger rounded">
+        <h5 class="fw-bold text-dark">${tool.description}</h5>
         <div class="row fw-bolder gap-1 my-1">
           <div class="col text-success bg-white rounded">${tool.pricing[0].price}<br>${tool.pricing[0].plan}</div>
           <div class="col text-danger bg-white rounded">${tool.pricing[1].price}<br>${tool.pricing[1].plan}</div>
@@ -108,13 +108,13 @@ const displayToolDetails = tool => {
         </div>
         <div class="row mt-2">
           <div class="col text-start">
-            <h5>Features</h5>
-            <p class="card-text">1. ${tool.features[0]}</p>
-            <p class="card-text">2. ${tool.features[1]}</p>
-            <p class="card-text">3. ${tool.features[2]}</p>
+            <h5 class="fw-bold text-dark">Features</h5>
+            <p class="card-text">1. ${tool.features[1].feature_name}</p>
+            <p class="card-text">2.${tool.features[2].feature_name}</p>
+            <p class="card-text">3. ${tool.features[3].feature_name}</p>
           </div>
           <div class="col text-start">
-            <h5>Integration</h5>
+            <h5 class="fw-bold text-dark">Integration</h5>
             <p class="card-text">1. ${tool.integrations[0]}</p>
             <p class="card-text">2. ${tool.integrations[1]}</p>
             <p class="card-text">3. ${tool.integrations[2]}</p>
