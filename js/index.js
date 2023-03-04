@@ -99,31 +99,34 @@ const displayToolDetails = tool => {
   toolDetails.innerHTML = `
   <div class="container text-center">
     <div class="row">
-      <div class="col">
+      <div class="col bg-light p-3">
         <h5>${tool.description}</h5>
-        <div class="row">
-          <div class="col">col</div>
-          <div class="col">col</div>
-          <div class="col">col</div>
+        <div class="row fw-bolder gap-1 my-1">
+          <div class="col text-success bg-white rounded">${tool.pricing[0].price}<br>${tool.pricing[0].plan}</div>
+          <div class="col text-danger bg-white rounded">${tool.pricing[1].price}<br>${tool.pricing[1].plan}</div>
+          <div class="col text-warning bg-white rounded">${tool.pricing[2].price}<br>${tool.pricing[2].plan}</div>
         </div>
-        <div class="row">
-          <div class="col">
+        <div class="row mt-2">
+          <div class="col text-start">
             <h5>Features</h5>
             <p class="card-text">1. ${tool.features[0]}</p>
             <p class="card-text">2. ${tool.features[1]}</p>
             <p class="card-text">3. ${tool.features[2]}</p>
           </div>
-          <div class="col">
+          <div class="col text-start">
             <h5>Integration</h5>
+            <p class="card-text">1. ${tool.integrations[0]}</p>
+            <p class="card-text">2. ${tool.integrations[1]}</p>
+            <p class="card-text">3. ${tool.integrations[2]}</p>
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card border-danger mb-3" style="max-width: 18rem;">
+        <div class="card border-danger mb-3  p-2" style="max-width: 18rem;">
           <img src="${tool.image_link[0]}" class="card-img-top" alt="${tool.tool_name}">
           <div class="card-body">
-            <h4 class="card-title">${tool.input_output_examples[0]}</h4>
-            <p class="card-text"></p>
+            <h4 class="card-title">${JSON.stringify(tool.input_output_examples[0].input)}</h4>
+            <p class="card-text">${JSON.stringify(tool.input_output_examples[0].output)}</p>
           </div>
         </div>
       </div>
