@@ -143,17 +143,16 @@ sortButton.addEventListener('click', function () {
   const cardsContainer = document.getElementById('tools-container');
   const cards = cardsContainer.querySelectorAll('.card');
 
-  // Convert the NodeList to an array so we can use Array methods
   const cardsArray = Array.from(cards);
 
-  // Sort the array by the date (assuming date is stored as a "data-date" attribute)
+  // Sort the array by the date 
   cardsArray.sort(function (card1, card2) {
     const date1 = new Date(card1.dataset.date);
     const date2 = new Date(card2.dataset.date);
     return date1 - date2;
   });
 
-  // Re-attach the cards to the DOM in the sorted order
+  // Re-attach
   cardsArray.forEach(function (card) {
     cardsContainer.appendChild(card);
   });
@@ -184,5 +183,6 @@ document.getElementById('btn-more').addEventListener('click', function () {
     });
 });
 
-// modal detai
+
+
 
