@@ -8,6 +8,7 @@ const loadTools = async () => {
 const displayTools = tools => {
   const toolsContainer = document.getElementById('tools-container');
   tools.forEach(tool => {
+
     const toolDiv = document.createElement('div');
     toolDiv.classList.add('col');
     toolDiv.innerHTML = `
@@ -25,7 +26,7 @@ const displayTools = tools => {
              <p class="text-muted"><i class="fa-regular fa-calendar-days pe-3"></i> ${tool.published_in}</p>
             </div>
             <div class = "row">
-            <button onclick="loadToolDetails${tool.status}" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#toolModal">
+            <button onclick="loadTooldetails(${tool.id})" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#toolModal">
             <i class="fa-solid fa-arrow-right"></i>
         </button>
           </div>
@@ -48,7 +49,9 @@ document.getElementById('btn-more').addEventListener('click', function () {
 
   const displayAllTools = tools => {
     const toolsContainer = document.getElementById('tools-container');
+
     tools.forEach(tool => {
+
       const toolDiv = document.createElement('div');
       toolDiv.classList.add('col');
       toolDiv.innerHTML = `
@@ -66,7 +69,7 @@ document.getElementById('btn-more').addEventListener('click', function () {
                <p class="text-muted"><i class="fa-regular fa-calendar-days pe-3"></i> ${tool.published_in}</p>
               </div>
               <div class = "row">
-              <button onclick="loadToolDetails('${tool.status}')" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#toolModal">
+              <button id="btn-show-details" onclick="loadToolDetails(${tool.id})" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#toolModal">
               <i class="fa-solid fa-arrow-right"></i>
           </button>
             </div>
@@ -78,6 +81,58 @@ document.getElementById('btn-more').addEventListener('click', function () {
 
   loadAllTools();
 })
+
+// load tool details
+const loadTooldetails = async (id) => {
+
+  const url = `https://openapi.programming-hero.com/api/ai/tool/0${id}`
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data)
+  displayToolDetails(data.data)
+}
+const displayToolDetails = tool => {
+
+  const modalTitle = document.getElementById('toolModalLabel');
+  modalTitle.innerText = tool.tool_name;
+  const toolDetails = document.getElementById('modal-container');
+  toolDetails.innerHTML = `
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h5>${tool.description}</h5>
+        <div class="row">
+          <div class="col">col</div>
+          <div class="col">col</div>
+          <div class="col">col</div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h5>Features</h5>
+            <p class="card-text">1. ${tool.features[0]}</p>
+            <p class="card-text">2. ${tool.features[1]}</p>
+            <p class="card-text">3. ${tool.features[2]}</p>
+          </div>
+          <div class="col">
+            <h5>Integration</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card border-danger mb-3" style="max-width: 18rem;">
+          <img src="${tool.image_link[0]}" class="card-img-top" alt="${tool.tool_name}">
+          <div class="card-body">
+            <h4 class="card-title">${tool.input_output_examples[0]}</h4>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+}
+
+
+
 
 
 // Show the spinner
