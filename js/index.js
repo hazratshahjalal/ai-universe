@@ -124,6 +124,8 @@ const displayToolDetails = tool => {
       <div class="col">
         <div class="card border-danger mb-3  p-2" style="max-width: 18rem;">
           <img src="${tool.image_link[0]}" class="card-img-top" alt="${tool.tool_name}">
+          <div class="position-absolute top-0 end-0 bg-danger text-white rounded">${(parseFloat(tool.accuracy.score) * 100)}% accuracy</div>
+
           <div class="card-body">
             <h4 class="card-title">${JSON.stringify(tool.input_output_examples[0].input)}</h4>
             <p class="card-text">${JSON.stringify(tool.input_output_examples[0].output)}</p>
@@ -133,6 +135,29 @@ const displayToolDetails = tool => {
     </div>
   `
 }
+
+// sort button
+const sortButton = document.getElementById('sort-button');
+sortButton.addEventListener('click', function () {
+  // Get all the card elements
+  const cardsContainer = document.getElementById('tools-container');
+  const cards = cardsContainer.querySelectorAll('.card');
+
+  // Convert the NodeList to an array so we can use Array methods
+  const cardsArray = Array.from(cards);
+
+  // Sort the array by the date (assuming date is stored as a "data-date" attribute)
+  cardsArray.sort(function (card1, card2) {
+    const date1 = new Date(card1.dataset.date);
+    const date2 = new Date(card2.dataset.date);
+    return date1 - date2;
+  });
+
+  // Re-attach the cards to the DOM in the sorted order
+  cardsArray.forEach(function (card) {
+    cardsContainer.appendChild(card);
+  });
+});
 
 
 
