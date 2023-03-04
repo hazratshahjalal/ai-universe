@@ -152,7 +152,7 @@ sortButton.addEventListener('click', function () {
     return date1 - date2;
   });
 
-  // Re-attach
+
   cardsArray.forEach(function (card) {
     cardsContainer.appendChild(card);
   });
